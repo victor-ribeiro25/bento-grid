@@ -110,36 +110,50 @@ img {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    padding-top: 20px;
-    overflow: hidden;
     
-
+    /* Usamos um padding generoso nas laterais e topo do card inteiro. 
+       Assim, tudo o que está dentro já nasce respeitando essa margem de respiro! */
+    padding: 24px 20px 20px 20px !important; 
+    
+    overflow: hidden;
+    align-items: flex-start;
+    text-align: left;
+    height: auto !important;
 }
 
-#text_b3{
-    font-size: 32px !important;
+#text_b3 {
+    font-size: 26px !important;
     font-weight: 500 !important;
-    text-align: center;
-    line-height: 0.95;
+    line-height: 1.1;
     text-align: start;
-    margin-left: 20px;
+    
+    /* Zeramos a margem esquerda aqui, pois o card já dá o padding de 20px nas laterais, 
+       fazendo o título alinhar perfeitamente com a caixa */
+    margin-left: 0 !important;
+    padding-top: 0 !important;
 }
 
-.bloco-3 p{
+.bloco-3 p {
     text-align: start;
-    font-size: 14px;
-    padding-left: 20px;
-    padding-right: 20px;
+    font-size: 15px !important; /* Tamanho legível que não estoura o card */
+    line-height: 1.4 !important;
+    
+    /* Remove paddings laterais repetidos, pois o card já gerencia isso */
+    padding: 0 !important; 
+    margin-top: 5px;
+    margin-bottom: 0px;
+    
 }
 
 .bloco-3 img {
-    /* Sem regras malucas por enquanto, apenas o comportamento padrão limpo */
     height: auto;
     display: block;
-    width: 120% !important;
+    width: 145% !important;
     max-width: none !important;
-    margin-left: 25%;
-   
+    
+    /* Remove a margem esquerda extra para a imagem começar alinhada 
+       exatamente na mesma linha do título e do parágrafo */
+    margin-left: 0 !important; 
 }
 
 .bloco-4{
@@ -258,4 +272,106 @@ img {
 .bloco-8 img{
     min-height: 180px;
     width: 200px;
+}
+
+@media (max-width: 768px) {
+
+    body {
+        /* Garante que o corpo da página nunca ultrapasse 100% da largura da tela do celular */
+        width: 100%;
+        
+        /* Corta qualquer conteúdo que ouse escapar para fora da tela na horizontal */
+        overflow-x: hidden; 
+        
+        /* Remove margens padrão que alguns navegadores colocam no body no celular */
+        margin: 0; 
+    }
+
+    @media (max-width: 768px) {
+    
+   
+    .container {
+        /* 1. Desliga o Grid do computador */
+        display: flex;
+        
+        /* 2. Força os elementos a ficarem um embaixo do outro (em coluna) */
+        flex-direction: column;
+        
+        /* 3. Garante que o container ocupe 100% da largura da tela do celular */
+        width: 100%;
+        
+        /* 4. Dá um respiro nas laterais para os cards não colarem na borda da tela do celular */
+        padding: 16px;
+        
+        /* 5. Cria um espaçamento vertical limpo entre um card e outro */
+        gap: 20px;
+        
+        /* 6. Evita que o padding faça o elemento estourar a largura da tela */
+        box-sizing: border-box;
+    }
+
+    .bloco-1{
+        order: 7;
+    }
+
+    .bloco-2{
+        order: 1;
+    }
+
+    .bloco-4 {
+        order: 2;
+    }
+
+    .bloco-5 {
+        order: 3;
+    }
+
+    .bloco-3{
+        order: 4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #text_b3{
+        text-align: center;
+        padding-top: 10px;
+        font-size: 24px !important;
+        font-weight: 600 !important;
+        
+    }
+
+    .bloco-3 p{
+        text-align: center;
+        padding-bottom: 20px;
+        font-size: 17px;
+    }
+
+    .bloco-3 img {
+        width: 90% !important;
+        max-width: 90% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        display: block !important;
+        height: auto !important;
+    }
+
+    .bloco-8{
+        order: 5;
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+
+    .bloco-7{
+        order: 6;
+    }
+
+    .bloco-6{
+        order: 7;
+    }
+
+}
 }
